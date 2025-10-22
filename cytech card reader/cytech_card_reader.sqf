@@ -23,11 +23,11 @@ CYTECH_AccessLevels = ["A", "B", "C", "D", "E"];
 
 // Define los nombres de clase de las tarjetas (ajusta según el mod Cytech)
 CYTECH_CardClasses = [
-	"cytech_item_idcard_a",  // Tarjeta A
-	"cytech_item_idcard_b",  // Tarjeta B
-	"cytech_item_idcard_c",  // Tarjeta C
-	"cytech_item_idcard_d",  // Tarjeta D
-	"cytech_item_idcard_e"   // Tarjeta E
+	"Cytech_SecurityKeycard_A",  // Tarjeta A
+	"Cytech_SecurityKeycard_B",  // Tarjeta B
+	"Cytech_SecurityKeycard_C",  // Tarjeta C
+	"Cytech_SecurityKeycard_D",  // Tarjeta D
+	"Cytech_SecurityKeycard_E"   // Tarjeta E
 ];
 
 // ===============================================
@@ -99,14 +99,16 @@ CYTECH_fnc_openDoorWithAccess = {
 		// Reproduce sonido de acceso concedido
 		playSound3D ["A3\Sounds_F\sfx\beep_target.wss", _door, false, getPosASL _door, 2, 1, 15];
 		
-		// Abre la puerta
-		_door animate ["door_1_rot", 1];
+		// Abre la puerta (ambas hojas para puertas Cytech)
+		_door animate ["door_1_tran", 1];
+		_door animate ["door_2_tran", 1];
 		
-		// Cierra la puerta automáticamente después de 5 segundos
+		// Cierra la puerta automáticamente después de 10 segundos
 		[_door] spawn {
 			params ["_door"];
-			sleep 5;
-			_door animate ["door_1_rot", 0];
+			sleep 10;
+			_door animate ["door_1_tran", 0];
+			_door animate ["door_2_tran", 0];
 		};
 		
 		true
@@ -136,13 +138,17 @@ CYTECH_fnc_openDoorWithAccess = {
 CYTECH_fnc_addCardReaderAction = {
 	params ["_reader", "_door", "_requiredLevel"];
 	
+	systemChat format ["DEBUG: Añadiendo acción al lector %1", _reader];
+	
 	private _actionText = format ["<t color='#00ffff'>🔒 Usar Lector de Tarjetas (Nivel %1)</t>", _requiredLevel];
 	
-	_reader addAction [
+	private _actionId = _reader addAction [
 		_actionText,
 		{
 			params ["_target", "_caller", "_actionId", "_arguments"];
 			_arguments params ["_door", "_requiredLevel"];
+			
+			systemChat "DEBUG: Acción ejecutada!";
 			
 			// Intenta abrir la puerta con verificación de acceso
 			[_door, _requiredLevel, _caller] call CYTECH_fnc_openDoorWithAccess;
@@ -155,6 +161,8 @@ CYTECH_fnc_addCardReaderAction = {
 		"true",
 		3
 	];
+	
+	systemChat format ["DEBUG: Acción añadida con ID: %1", _actionId];
 };
 
 // ===============================================
@@ -163,20 +171,29 @@ CYTECH_fnc_addCardReaderAction = {
 CYTECH_fnc_setupCardReader = {
 	params ["_reader", "_door", "_requiredLevel"];
 	
+	// Debug: muestra lo que se está configurando
+	systemChat format ["DEBUG: Configurando lector. Reader: %1, Door: %2, Level: %3", _reader, _door, _requiredLevel];
+	
 	// Valida el nivel requerido
 	if !(_requiredLevel in CYTECH_AccessLevels) exitWith {
 		systemChat format ["ERROR: Nivel '%1' no es válido. Usa: A, B, C, D o E", _requiredLevel];
 	};
 	
+	// Valida que el lector existe
+	if (isNull _reader) exitWith {
+		systemChat "ERROR: El objeto lector es nulo";
+	};
+	
+	// Valida que la puerta existe
+	if (isNull _door) exitWith {
+		systemChat "ERROR: El objeto puerta es nulo";
+	};
+	
 	// Añade la acción al lector
 	[_reader, _door, _requiredLevel] call CYTECH_fnc_addCardReaderAction;
 	
-	// Marca el lector visualmente (opcional)
-	private _marker = createVehicle ["Sign_Sphere10cm_F", getPos _reader, [], 0, "CAN_COLLIDE"];
-	_marker attachTo [_reader, [0, 0, 0.5]];
-	_marker setObjectTexture [0, format ["#(rgb,8,8,3)color(%1,%2,%3,1)", random 1, random 1, random 1, 1]];
-	
 	systemChat format ["✓ Lector de tarjetas configurado: Nivel %1 requerido", _requiredLevel];
+	systemChat "✓ Acción añadida. Acércate al lector para ver la opción de interacción";
 };
 
 // ===============================================
@@ -292,4 +309,3 @@ if (!isNil "player") then {
 // ===============================================
 // FIN DEL SCRIPT
 // ===============================================
-
