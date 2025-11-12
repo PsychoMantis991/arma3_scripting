@@ -1,0 +1,62 @@
+/*
+	Archivo: description_addon.ext
+	Descripción: Configuraciones adicionales para Description.ext
+	
+	IMPORTANTE: Copia este contenido a tu Description.ext existente o incluye este archivo.
+	
+	Si quieres incluir este archivo desde tu Description.ext, añade esta línea:
+	#include "extracted_system\description_addon.ext"
+*/
+
+// ===== CONFIGURACIÓN DE RESPAWN =====
+// Estas son configuraciones recomendadas, ajústalas según tu misión
+/*
+respawn = 3;
+respawnDelay = 10;
+respawnDialog = 1;
+
+// ===== HABILITAR CONSOLA DE DEBUG =====
+// Solo para testing, comenta esto en misiones finales
+enableDebugConsole = 1;
+
+// ===== CONFIGURACIÓN DE GESTIÓN DE CADÁVERES =====
+// Para mejor rendimiento con muchas unidades
+corpseManagerMode = 1;
+corpseLimit = 10;
+corpseRemovalMinTime = 300;
+corpseRemovalMaxTime = 600;
+
+// ===== WRECKMANAGER =====
+// Gestión de vehículos destruidos
+wreckManagerMode = 1;
+wreckLimit = 5;
+wreckRemovalMinTime = 300;
+wreckRemovalMaxTime = 600;
+*/
+// ===== MENÚ DE COMUNICACIÓN (OPCIONAL) =====
+// Puedes agregar comandos útiles al menú de comunicación
+class CfgCommunicationMenu
+{
+	class SpawnToggle
+	{
+		text = "Toggle Menú de Spawn";
+		submenu = "";
+		expression = "[] call SPAWN_toggleMenu";
+		icon = "\a3\ui_f\data\IGUI\Cfg\Actions\settimer_ca.paa";
+		cursor = "";
+		enable = "1";
+		removeAfterExpressionCall = 0;
+	};
+	
+	class CleanupAll
+	{
+		text = "Limpiar Todo";
+		submenu = "";
+		expression = "[] call SPAWN_cleanupAll";
+		icon = "\a3\ui_f\data\IGUI\Cfg\Actions\clear_empty_ca.paa";
+		cursor = "";
+		enable = "1";
+		removeAfterExpressionCall = 0;
+	};
+};
+
