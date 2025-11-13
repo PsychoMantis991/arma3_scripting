@@ -1,41 +1,107 @@
-# Prerequisites
-*.d
+# ============================================
+# GITIGNORE PARA PROYECTOS DE ARMA 3 SCRIPTING
+# ============================================
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+# ===== ARMA 3 - Archivos compilados y temporales =====
+*.pbo
+*.ebo
+*.bisign
+*.bikey
 
-# Precompiled Headers
-*.gch
-*.pch
+# Logs y reportes de Arma 3
+*.log
+*.rpt
+*.mdmp
+*.bidmp
 
-# Linker files
-*.ilk
+# Archivos de caché de Arma 3
+*.cache
 
-# Debugger Files
-*.pdb
+# ===== ARMA 3 - Carpetas de desarrollo =====
+# Carpetas de prueba y temporales
+test/
+temp/
+tmp/
+backup/
+old/
+_old/
+_backup/
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+# Carpetas de builds
+build/
+dist/
+release/
 
-# Fortran module files
-*.mod
-*.smod
+# ===== WINDOWS - Archivos del sistema =====
+# Thumbnails
+Thumbs.db
+ehthumbs.db
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+# Folder config file
+Desktop.ini
 
-# Executables
-*.exe
-*.out
-*.app
+# Recycle Bin
+$RECYCLE.BIN/
 
-# debug information files
-*.dwo
+# Windows shortcuts
+*.lnk
+
+# ===== EDITORES Y IDEs =====
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Notepad++
+*.bak
+
+# JetBrains IDEs
+.idea/
+*.iml
+
+# ===== ARCHIVOS TEMPORALES =====
+# Archivos temporales generales
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Archivos de respaldo
+*.backup
+*_backup
+*.old
+
+# ===== CONFIGURACIONES PERSONALES =====
+# Configuraciones locales que no deben compartirse
+config_local.sqf
+settings_local.sqf
+*_local.sqf
+
+# Archivos de prueba personal
+test_*.sqf
+debug_*.sqf
+
+# ===== DOCUMENTACIÓN TEMPORAL =====
+# Notas personales
+notas.txt
+TODO.txt
+PERSONAL.txt
+
+# ===== GIT =====
+# Git conflict files
+*.orig
+
+# ===== OTROS =====
+# Archivos comprimidos (si no son necesarios en el repo)
+# *.zip
+# *.rar
+# *.7z
+
+# Archivos muy grandes (descomentar si es necesario)
+# *.paa
+# *.jpg
+# *.png
