@@ -334,8 +334,8 @@ Ver PLANTILLAS.txt para ejemplos de código.
 
 
 ═══════════════════════════════════════════════════════════════════════════════
-                        Creado por: Cruoriss
-                        Versión: 2.8b Modular
+                        Creado por: Psycho Mantis
+                        Versión: 1.0 Modular
                         Fecha: Noviembre 2025
 ═══════════════════════════════════════════════════════════════════════════════
 
