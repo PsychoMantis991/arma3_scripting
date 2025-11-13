@@ -1,0 +1,18 @@
+// ============================================
+// ALL OUT WARFARE - DESCRIPTION.EXT
+// Copia este contenido a tu description.ext
+// ============================================
+
+// GUIs necesarias
+#include "AOW_System\AOW_GUI\Defines.hpp"
+#include "AOW_System\AOW_GUI\AowMenu.hpp"
+#include "AOW_System\AOW_GUI\CreateTasks.hpp"
+#include "AOW_System\AOW_GUI\CreateZone.hpp"
+
+// ASORVS (Garaje Virtual)
+#include "AOW_System\ASORVS\menu.hpp"
+
+// Bon Recruit (Reclutamiento)
+#include "AOW_System\bon_recruit_units\dialog\common.hpp"
+#include "AOW_System\bon_recruit_units\dialog\recruitment.hpp"
+
